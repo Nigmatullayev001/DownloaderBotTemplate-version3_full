@@ -1,17 +1,17 @@
-# Project README
+# Loyihaning README Fayi
 
-This project involves setting up a bot that requires environment variables for proper configuration. Below is a guide to help you configure the necessary `.env` file and get your bot running.
+Ushbu loyiha botni sozlashni o'z ichiga oladi, bu esa to'g'ri konfiguratsiya uchun muhit o'zgaruvchilariga muhtoj. Quyida `.env` faylini sozlash va botni ishga tushirish bo'yicha ko'rsatmalar keltirilgan.
 
-## Prerequisites
+## Talablar
 
-Before starting, make sure you have the following:
-- A **Telegram Bot token** from [BotFather](https://core.telegram.org/bots#botfather).
-- **API keys** (if applicable) for any services your bot interacts with.
-- Access to the relevant **Telegram channel or group** for admin privileges (if needed).
+Boshlashdan oldin quyidagi narsalar mavjudligini tekshirib chiqing:
+- **Telegram Bot tokeni**: [BotFather](https://core.telegram.org/bots#botfather) dan olingan token.
+- **API kalitlari** (agar kerak bo'lsa), bot o'zaro aloqada bo'ladigan tashqi xizmatlar uchun.
+- **Telegram kanal yoki guruh**ga admin huquqlari, agar bot undan foydalanishi kerak bo'lsa.
 
-## Setting up the `.env` file
+## `.env` Faylini Sozlash
 
-Create a `.env` file in the root of your project folder. Copy and paste the following information into the `.env` file and replace the placeholders with your own values:
+Loyihangiz papkasida `.env` faylini yarating. Quyidagi ma'lumotlarni `.env` fayliga nusxalab joylashtiring va o'z ma'lumotlaringiz bilan almashtiring:
 
 ```env
 # YANGI .env FAYL YARATING VA
