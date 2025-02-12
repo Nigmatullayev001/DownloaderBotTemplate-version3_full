@@ -135,15 +135,15 @@ class Database:
     def create_snapchat(self):
         self.cursor.execute("""
         CREATE TABLE IF NOT EXISTS snapchat (
-            id INTEGER PRIMARY KEY,
+            id INTEGER,
             title VARCHAR,
             url VARCHAR,
         )
         """)
 
-    def snapchat_add_url(self, title, url):
-        self.cursor.execute("insert into snapchat (title, url) values (?, ?)",
-                            (title, url))
+    def snapchat_add_url(self, id, title, url):
+        self.cursor.execute("insert into snapchat (id, title, url) values (?, ?, ?)",
+                            (id, title, url))
         self.connection.commit()
 
     def snapchat_all_urls(self):

@@ -1,6 +1,6 @@
 from aiogram import Router
 from .users import start, help, saved_url, check_sub, instagram_down, tiktok_downloader, qollanma, back, \
-    youtube, pinterest_down  # test ham import qilindi
+    youtube, pinterest_down, snapchat_down  # test ham import qilindi
 
 
 def setup_message_routers() -> Router:
@@ -17,5 +17,6 @@ def setup_message_routers() -> Router:
     router.include_router(back.router)
     router.include_router(youtube.router)
     router.include_router(pinterest_down.router)
+    router.include_router(snapchat_down.router)
 
     return router
