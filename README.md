@@ -13,8 +13,8 @@ Create a .env file in the root of your project folder. Copy and paste the follow
 ini
 Копировать
 Редактировать
-# YANGI .env FAYL YARATING VA
-# QUYIDAGI MA'LUMOTLARNI YOZING:
+* YANGI .env FAYL YARATING VA
+* QUYIDAGI MA'LUMOTLARNI YOZING:
 
 # ADMINLARNI ID sini kiritish kerak,
 ADMINS=123456789
