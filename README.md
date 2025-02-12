@@ -1,4 +1,4 @@
-Project README
+# Project README
 This project involves setting up a bot that requires some environment variables for proper configuration. Below is a guide to help you configure the necessary .env file and get your bot running.
 
 Prerequisites
