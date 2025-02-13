@@ -52,7 +52,7 @@ async def handle_tiktok(message: Message):
     tt_all = db.tiktok_all_urls()
     for tt in tt_all:
         if tt.startswith("http"):
-            await message.answer_video(tt, reply_markup=main_keyboard())  # TikTokdan video yuborish
+            await message.answer_video(tt[2], reply_markup=main_keyboard())  # TikTokdan video yuborish
         else:
             await message.answer("TikTok video URL noto'g'ri.", reply_markup=main_keyboard())
 
@@ -62,10 +62,10 @@ async def handle_tiktok(message: Message):
 async def handle_pinterest(message: Message):
     pin_all = db.pinterest_all_urls()
     for pin in pin_all:
-        if pin.startswith("http"):
-            await message.answer_video(pin, reply_markup=main_keyboard())  # Pinterestdan video yuborish
-        else:
-            await message.answer("Pinterest video URL noto'g'ri.", reply_markup=main_keyboard())
+        if pin[2].endswith(".mp4"):
+            await message.answer_video(pin[2], reply_markup=main_keyboard())
+        elif pin[2].endswith(".jpg"):
+            await message.answer_photo(pin[2], reply_markup=main_keyboard())
 
 
 # 🎬 YouTube - Video Tanlash

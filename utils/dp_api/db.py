@@ -12,6 +12,9 @@ class Database:
         self.create_youtube()
         self.create_tik_tok()
         self.create_youtube()
+        self.create_pinterest()
+        self.create_facebook()
+        self.create_snapchat()
 
     # INSTAGRAM uchun ma'lumotlar ombori(DataBase)
     def create_instagram(self):
@@ -91,40 +94,60 @@ class Database:
 
     # pinterest uchun ma'lumotlar ombori(DataBase)
     def create_pinterest(self):
-        self.cursor.execute("""
-        CREATE TABLE IF NOT EXISTS pinterest (
-            id INTEGER PRIMARY KEY,
-            title VARCHAR,
-            url VARCHAR,
-        )
-        """)
+        """Creates a table for Pinterest URLs if it doesn't exist."""
+        try:
+            self.cursor.execute("""
+                CREATE TABLE IF NOT EXISTS pinterest (
+                    id integer primary key,
+                    title TEXT NOT NULL,
+                    url TEXT NOT NULL UNIQUE
+                )
+            """)
+            self.connection.commit()
+        except sqlite3.Error as e:
+            print(f"Error creating table: {e}")
+            self.connection.rollback()
 
     def pinterest_add_url(self, title, url):
-        self.cursor.execute("insert into pinterest (title, url) values (?, ?)",
-                            (title, url))
-        self.connection.commit()
+        """Adds a Pinterest URL with a title into the database."""
+        try:
+            self.cursor.execute("INSERT INTO pinterest (title, url) VALUES (?, ?)", (title, url))
+            self.connection.commit()
+        except sqlite3.IntegrityError:
+            print(f"Error: The URL '{url}' already exists in the database.")
+        except sqlite3.Error as e:
+            print(f"Error adding Pinterest URL: {e}")
+            self.connection.rollback()
 
     def pinterest_all_urls(self):
-        self.cursor.execute("select * from pinterest")
-        return self.cursor.fetchall()
+        """Fetches all Pinterest URLs from the database."""
+        try:
+            self.cursor.execute("SELECT * FROM pinterest")
+            return self.cursor.fetchall()
+        except sqlite3.Error as e:
+            print(f"Error fetching Pinterest URLs: {e}")
+            return []
+
+    def close(self):
+        """Closes the connection to the database."""
+        self.connection.close()
 
     # Snapchat uchun ma'lumotlar ombori(DataBase)
-
     def create_snapchat(self):
         self.cursor.execute("""
         CREATE TABLE IF NOT EXISTS snapchat (
             id INTEGER PRIMARY KEY,
-            title VARCHAR,
-            url VARCHAR,
+            title TEXT,
+            url TEXT
         )
         """)
+        self.connection.commit()  # Ensure changes are committed
 
-    def snapchat_add_url(self, title, url):
-        self.cursor.execute("insert into snapchat (title, url) values (?, ?)",
-                            (title, url))
+    def snapchat_add_url(self, id, title, url):
+        self.cursor.execute("INSERT INTO snapchat (id, title, url) VALUES (?, ?, ?)",
+                            (id, title, url))
         self.connection.commit()
 
     def snapchat_all_urls(self):
-        self.cursor.execute("select * from snapchat")
-
-        return self.cursor.fetchall()
+        self.cursor.execute("SELECT * FROM snapchat")
+        return self.cursor.fetchall()  # Fetch results
