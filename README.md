@@ -61,7 +61,7 @@ ip=localhost
 
 ### Test Bot
 
-**[Instagram & YouTube Downloaders Bot](@instagram_youtbe_downloaders_bot)**
+**[Instagram & YouTube Downloaders Bot](https://t.me/instagram_youtbe_downloaders_bot)**
 
 ### Copyright
 
