@@ -13,6 +13,8 @@ class Database:
         self.create_tik_tok()
         self.create_youtube()
         self.create_pinterest()
+        self.create_facebook()
+        self.create_snapchat()
 
     # INSTAGRAM uchun ma'lumotlar ombori(DataBase)
     def create_instagram(self):
@@ -131,22 +133,21 @@ class Database:
         self.connection.close()
 
     # Snapchat uchun ma'lumotlar ombori(DataBase)
-
     def create_snapchat(self):
         self.cursor.execute("""
         CREATE TABLE IF NOT EXISTS snapchat (
-            id INTEGER,
-            title VARCHAR,
-            url VARCHAR,
+            id INTEGER PRIMARY KEY,
+            title TEXT,
+            url TEXT
         )
         """)
+        self.connection.commit()  # Ensure changes are committed
 
     def snapchat_add_url(self, id, title, url):
-        self.cursor.execute("insert into snapchat (id, title, url) values (?, ?, ?)",
+        self.cursor.execute("INSERT INTO snapchat (id, title, url) VALUES (?, ?, ?)",
                             (id, title, url))
         self.connection.commit()
 
     def snapchat_all_urls(self):
-        self.cursor.execute("select * from snapchat")
-
-        return self.cursor.fetchall()
+        self.cursor.execute("SELECT * FROM snapchat")
+        return self.cursor.fetchall()  # Fetch results
