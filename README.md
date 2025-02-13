@@ -57,4 +57,20 @@ ip=localhost
 ## TikTok Video Downloader  
 [ElisBushaj2 API - TikTok Video Downloader](https://rapidapi.com/elisbushaj2/api/tiktok-video-downloader-api)
 
+---
+
+### Test Bot
+
+**Instagram & YouTube Downloaders Bot**
+
+### Copyright
+
+**SVS - [GitHub Repository](https://github.com/Nigmatullayev001)**
+
+**Telegram - [SVS](https://t.me/SVS_Company)**
+
+**Telegram Profile - [SVS](https://t.me/SVS_OWNER)**
+
+
+
 
