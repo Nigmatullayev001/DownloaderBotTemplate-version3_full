@@ -22,15 +22,15 @@ def downloader(link):
         return "error"
     else:
         print(result)
-        if result["Type"] == "Image":
+        if result["Type"] == "Image" or 'Post-Image':
             dict['type'] = "image"
             dict["media"] = result["media"]
             return dict
-        elif result["Type"] == "Video":
+        elif result["Type"] == "Video" or "Post-Video":
             dict["type"] = "video"
             dict["media"] = result["media"]
             return dict
-        elif result["Type"] == "Carousel":
+        elif result["Type"] == "Carousel" or "Post-Carousel":
             dict["type"] = "carousel"
             dict["media"] = result["media"]
             return dict

@@ -33,11 +33,11 @@ async def instagram_down(message: types.Message):
 
         if data["type"] == "image":
             await message.answer_photo(photo=data["media"])
-            db.instagram_add_url(title="image", url=f"{data['media']} | #image")
+            db.instagram_add_url(user_id=message.from_user.id, title="image", url=f"{data['media']} | #image")
 
         elif data["type"] == "video":
             await message.answer_video(video=data["media"])
-            db.instagram_add_url(title="video", url=f"{data['media']} | #video")
+            db.instagram_add_url(user_id=message.from_user.id, title="video", url=f"{data['media']} | #video")
 
         elif data["type"] == "carousel":
             media_groups = []
@@ -48,7 +48,7 @@ async def instagram_down(message: types.Message):
                     media_groups.append(
                         types.InputMediaPhoto(media=media_url, caption=f"📸 {media_title}")
                     )
-                    db.instagram_add_url(title="carousel", url=f"{media_url} | #carousel")
+                    db.instagram_add_url(user_id=message.from_user.id, title="carousel", url=f"{media_url} | #carousel")
                 else:
                     await message.answer("❌ Media formati mos kelmadi!")
 

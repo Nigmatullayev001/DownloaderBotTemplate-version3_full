@@ -1,6 +1,6 @@
 from aiogram import types, F, Router
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from keyboard.inline.kanalga_azo_bolish import subscribe_ikm
 from keyboard.inline.mp3_mp4 import mp4_or_mp3_ikm
 from keyboard.inline.save_delete import save_del, saved
@@ -63,11 +63,22 @@ async def handle_mp3_callback(callback_query: CallbackQuery, state: FSMContext):
         await callback_query.message.answer("Videoning audio fayllari topilmadi.")
         return
 
-    db.youtube_add_url(title=f'{title_id} #audio', url=audios)
-    await callback_query.message.answer_audio(
-        audio=audios, title=f'{title_id} | #audio', thumb=thumb_id,
-        caption="Bu audio @instagram_youtbe_downloaders_bot orqali yuklab olindi!"
-    )
+    try:
+        await callback_query.message.answer_audio(
+            audio=str(audios), title=f'{title_id} | #audio', thumb=thumb_id,
+            caption="Bu audio @instagram_youtbe_downloaders_bot orqali yuklab olindi!",
+        )
+        db.youtube_add_url(callback_query.from_user.id, title=f'{title_id} #audio', url=audios)
+
+    except Exception as e:
+        await callback_query.message.answer(
+            'Video audiosi juda uzun shu uchun sizga yuklab olish linkini tashlab beramiz!',
+            reply_markup=InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [InlineKeyboardButton(text="AUDIO YUKLAB OLISH", url=audios)]
+                ]
+            )
+        )
 
 
 # ✅ MP4 Callback Handler
@@ -96,12 +107,12 @@ async def handle_mp4_callback(callback_query: CallbackQuery, state: FSMContext):
         return
 
     videos = download_url.get("videos", {}).get("items", [])
-    downloaded_url = videos[0]["url"] if videos else None
-    url_mb = videos[0]["sizeText"] if videos else None
+    downloaded_url = videos[0]["url"]
+    url_mb = videos[0]["sizeText"]
     title_id = download_url.get("title", "Unknown Title")
 
     if downloaded_url:
-        db.youtube_add_url(title=f'{title_id} | #video', url=downloaded_url)
+        db.youtube_add_url(callback_query.from_user.id, title=f'{title_id} | #video', url=downloaded_url)
         await callback_query.message.answer_video(
             video=downloaded_url,
             caption=f"Bu video @instagram_youtbe_downloaders_bot orqali yuklab olindi!\n"

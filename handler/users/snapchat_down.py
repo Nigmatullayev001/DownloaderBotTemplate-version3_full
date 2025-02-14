@@ -36,7 +36,7 @@ async def fetch_pinterest_url(message: types.Message):
                                       caption=f"{download_link['data']['title']} - {megabytes} MB",
                                       parse_mode=ParseMode.MARKDOWN)
 
-    db.pinterest_add_url(f"{message.from_user.id}", link_url)
+    db.snapchat_add_url(message.from_user.id, f"{message.from_user.id}", link_url)
 
 # except KeyError as e:
 #     await message.reply(f"Error: Missing data field ({str(e)})")
