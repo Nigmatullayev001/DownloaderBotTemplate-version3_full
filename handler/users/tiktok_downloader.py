@@ -18,7 +18,7 @@ async def handle_tiktok_url(message: types.Message):
         video_download_url = download_tiktok_video(video_url)
 
         if video_download_url:
-            db.tiktok_add_url('title_tiktok', video_download_url)
+            db.tiktok_add_url(message.from_user.id, 'title_tiktok', video_download_url)
             await message.reply_video(video_download_url)
         else:
             await message.reply("❌ Videoni yuklab bo‘lmadi. Iltimos, boshqa link yuboring.")

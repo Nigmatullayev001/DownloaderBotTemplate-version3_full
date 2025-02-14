@@ -36,7 +36,7 @@ async def fetch_pinterest_url(message: types.Message):
                                       caption=f"{download_link[0]['meta']['title']}",
                                       parse_mode=ParseMode.MARKDOWN)
 
-    db.facebook_add_url(f"{message.from_user.id}", link_url)
+    db.facebook_add_url(user_id=message.from_user.id, title="{message.from_user.id}", url=link_url)
 
 # except KeyError as e:
 #     await message.reply(f"Error: Missing data field ({str(e)})")

@@ -25,7 +25,6 @@ async def fetch_pinterest_url(message: types.Message):
     # Default link URL
     link_url = 'https://www.pinterest.com'
 
-
     # try:
     # Check if the response contains "stories"
     if download_link:
@@ -42,7 +41,7 @@ async def fetch_pinterest_url(message: types.Message):
             await message.reply_photo(photo=link_url, caption="Here is your Pinterest image!",
                                       parse_mode=ParseMode.MARKDOWN)
 
-    db.snapchat_add_url(f"{download_link}_{message.from_user.id}", link_url)
+    db.snapchat_add_url(user_id=message.from_user.id, title=f"{download_link}_{message.from_user.id}", url=link_url)
 
 # except KeyError as e:
 #     await message.reply(f"Error: Missing data field ({str(e)})")
